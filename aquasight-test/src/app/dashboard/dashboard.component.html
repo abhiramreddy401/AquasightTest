@@ -1,0 +1,30 @@
+<div class="dashboard-container">
+  <mat-toolbar color="primary">
+    <div>Dashboard</div>
+    <span class="div-spacer"></span>
+    <div>
+      <button mat-flat-button color="warn" (click)="onLogout($event)">
+        Log Out
+      </button>
+    </div>
+  </mat-toolbar>
+
+
+  <div class="dashboard-content" fxLayout="row wrap" fxLayout.lt-md="column" fxLayoutGap="14px grid">
+    <div fxFlex="calc(50% - 14px)">
+      <mat-card fxFlex>
+        <app-dashboard-form (onSubmitValue)="createValue($event)"></app-dashboard-form>
+      </mat-card>
+    </div>
+    <div fxFlex="calc(50% - 14px)">
+      <mat-card>
+        <app-dashboard-table [userTableData]="dataUser"></app-dashboard-table>
+      </mat-card>
+    </div>
+    <div fxFlex="calc(100% - 14px)">
+      <mat-card>
+        <app-dashboard-chart></app-dashboard-chart>
+      </mat-card>
+    </div>
+  </div>
+</div>

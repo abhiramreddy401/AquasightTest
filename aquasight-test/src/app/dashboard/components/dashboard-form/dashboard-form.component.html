@@ -1,0 +1,61 @@
+<div class="dashboard-form">
+  <form
+    fxFlex="100%"
+    fxLayout="column"
+    (ngSubmit)="onSubmit($event)"
+    [formGroup]="dashboardForm"
+    novalidate
+  >
+    <div fxLayout="column">
+      <mat-form-field appearance="outline">
+        <mat-label>Flow</mat-label>
+        <input
+          matInput
+          placeholder="Flow"
+          name="flow"
+          type="text"
+          formControlName="flow"
+          required
+        />
+        <mat-error *ngIf="dashboardForm.controls.flow.errors?.required"
+          >Flow required</mat-error
+        >
+        <mat-error *ngIf="dashboardForm.controls.flow.errors?.pattern"
+          >Please provide a valid number</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Pressure</mat-label>
+        <input
+          matInput
+          placeholder="Pressure"
+          name="pressure"
+          type="text"
+          formControlName="pressure"
+          required
+        />
+        <mat-error *ngIf="dashboardForm.controls.pressure.errors?.required"
+          >Pressure required</mat-error
+        >
+        <mat-error *ngIf="dashboardForm.controls.pressure.errors?.pattern"
+          >Please provide a valid number</mat-error
+        >
+      </mat-form-field>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div>
+          <button type="submit" mat-flat-button color="primary">ADD</button>
+        </div>
+        <div>
+          <button
+            type="button"
+            mat-flat-button
+            color="accent"
+            (click)="resetForm()"
+          >
+            Reset Form
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

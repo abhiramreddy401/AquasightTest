@@ -1,0 +1,74 @@
+<div
+  class="login-container"
+  fxFlex="100%"
+  fxLayout="column"
+  fxLayout.Align="center center"
+>
+  <div class="login-card__wrapper">
+    <mat-card>
+      <form
+        fxFlex="100%"
+        fxLayout="column"
+        (ngSubmit)="onSubmit($event)"
+        [formGroup]="loginForm"
+        novalidate
+      >
+        <div fxLayout="column">
+          <div class="login-header__text">Aquasight Login</div>
+          <span></span>
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input
+              matInput
+              placeholder="Email"
+              name="email"
+              type="email"
+              formControlName="email"
+              required
+              email
+            />
+            <mat-error *ngIf="loginForm.controls.email.errors?.required"
+              >email required</mat-error
+            >
+            <mat-error
+              *ngIf="loginForm.controls.email.errors?.pattern"
+              >Please provide a valid email address</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input
+              matInput
+              placeholder="Password"
+              type="password"
+              autocomplete="off"
+              formControlName="password"
+              name="password"
+              required
+            />
+            <mat-error *ngIf="loginForm.controls.password.invalid"
+              >password required</mat-error
+            >
+          </mat-form-field>
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+            <div>
+              <button type="submit" mat-flat-button color="primary">
+                Log In
+              </button>
+            </div>
+            <div>
+              <button
+                type="button"
+                mat-flat-button
+                color="accent"
+                (click)="openRegistrationForm()"
+              >
+                Register
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+</div>
