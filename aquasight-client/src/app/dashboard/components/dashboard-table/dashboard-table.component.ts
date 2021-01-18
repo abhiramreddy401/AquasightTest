@@ -20,7 +20,7 @@ export class DashboardTableComponent {
   displayedColumns = ['entryTimeStamp', 'flow', 'pressure'];
   dataSource: MatTableDataSource<DataList>;
 
-  @Input() set userTableData(value: DataList[]) {
+  @Input() set userSubmitData(value: DataList[]) {
 
 
     if (value) {
@@ -39,7 +39,7 @@ export class DashboardTableComponent {
 
   formatTimeDate(date) {
 
-    return moment.utc(date).tz('America/New_York').format("MM-DD-YYYY hh:mm:ss a")
+    return moment.utc(date).tz('America/New_York').format("MM-DD-YYYY hh:mm a")
 
   }
 }

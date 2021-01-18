@@ -18,12 +18,12 @@
     </div>
     <div fxFlex="calc(50% - 14px)">
       <mat-card>
-        <app-dashboard-table [userTableData]="dataUser"></app-dashboard-table>
+        <app-dashboard-table [userSubmitData]="dataUser"></app-dashboard-table>
       </mat-card>
     </div>
     <div fxFlex="calc(100% - 14px)">
       <mat-card>
-        <app-dashboard-chart></app-dashboard-chart>
+        <app-dashboard-chart [userSubmitData]="dataUser"></app-dashboard-chart>
       </mat-card>
     </div>
   </div>

@@ -74,6 +74,7 @@ export class DashboardComponent implements OnInit {
     );
   }
   onLogout(ev): void {
+    localStorage.clear();
     this.route.navigateByUrl('/login');
   }
 
