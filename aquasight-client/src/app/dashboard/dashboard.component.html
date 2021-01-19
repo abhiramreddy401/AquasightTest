@@ -13,16 +13,25 @@
   <div class="dashboard-content" fxLayout="row wrap" fxLayout.lt-md="column" fxLayoutGap="14px grid">
     <div fxFlex="calc(50% - 14px)">
       <mat-card fxFlex>
-        <app-dashboard-form (onSubmitValue)="createValue($event)"></app-dashboard-form>
+        <div class="card-title">
+          Form
+        </div>
+        <app-dashboard-form (onSubmitValue)="createValue($event)" [pending]="pending"></app-dashboard-form>
       </mat-card>
     </div>
     <div fxFlex="calc(50% - 14px)">
       <mat-card>
+        <div class="card-title">
+          Table
+        </div>
         <app-dashboard-table [userSubmitData]="dataUser"></app-dashboard-table>
       </mat-card>
     </div>
     <div fxFlex="calc(100% - 14px)">
       <mat-card>
+        <div class="card-title">
+          Chart
+        </div>
         <app-dashboard-chart [userSubmitData]="dataUser"></app-dashboard-chart>
       </mat-card>
     </div>

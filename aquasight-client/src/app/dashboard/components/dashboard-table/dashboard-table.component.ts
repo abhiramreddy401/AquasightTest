@@ -1,7 +1,6 @@
-import { AfterViewInit, Input } from '@angular/core';
+import { Input } from '@angular/core';
 import {
   Component,
-  OnInit,
   ChangeDetectionStrategy,
   ViewChild,
 } from '@angular/core';
@@ -21,25 +20,17 @@ export class DashboardTableComponent {
   dataSource: MatTableDataSource<DataList>;
 
   @Input() set userSubmitData(value: DataList[]) {
-
-
     if (value) {
-
       this.dataSource = new MatTableDataSource<DataList>(value);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     }
-
   }
-
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-
   formatTimeDate(date) {
-
-    return moment.utc(date).tz('America/New_York').format("MM-DD-YYYY hh:mm a")
-
+    return moment.utc(date).tz('America/New_York').format('MM-DD-YYYY hh:mm a');
   }
 }

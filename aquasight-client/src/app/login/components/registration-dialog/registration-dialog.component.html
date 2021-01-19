@@ -73,7 +73,14 @@
         >
       </mat-form-field>
       <div>
-        <button type="submit" mat-flat-button color="accent">Register</button>
+        <button
+          type="submit"
+          mat-flat-button
+          color="accent"
+          [disabled]="pending"
+        >
+          Register
+        </button>
       </div>
     </div>
   </form>

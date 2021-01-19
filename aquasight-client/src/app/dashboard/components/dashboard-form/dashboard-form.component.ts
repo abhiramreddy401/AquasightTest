@@ -1,4 +1,10 @@
-import { Component, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  Output,
+  EventEmitter,
+  Input,
+} from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -14,6 +20,8 @@ import {
 })
 export class DashboardFormComponent {
   dashboardForm: FormGroup;
+
+  @Input() pending: boolean;
 
   @Output() onSubmitValue = new EventEmitter<object>();
 
@@ -37,9 +45,7 @@ export class DashboardFormComponent {
   onSubmit(ev): void {
     if (this.dashboardForm.invalid)
       return this.dashboardForm.markAllAsTouched();
-
     this.onSubmitValue.emit(this.dashboardForm.value);
-
   }
   resetForm(): void {
     this.form();

@@ -43,7 +43,7 @@
       </mat-form-field>
       <div fxLayout="row" fxLayoutAlign="space-between center">
         <div>
-          <button type="submit" mat-flat-button color="primary">ADD</button>
+          <button type="submit" mat-flat-button color="primary" [disabled]="pending">Submit</button>
         </div>
         <div>
           <button

@@ -19,6 +19,7 @@ import { LoginService } from './login.service';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  pending: boolean = false;
   constructor(
     private route: Router,
     private formBuilder: FormBuilder,
@@ -34,15 +35,15 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
   onSubmit(ev): void {
-    console.log(this.loginForm.value);
     if (this.loginForm.invalid) return this.loginForm.markAllAsTouched();
-
+    this.pending = true;
     this.loginService
       .authUser(this.loginForm.value)
       .pipe(
         finalize(() => {
+          this.pending = false;
           this.route.navigateByUrl('/dashboard');
         })
       )
@@ -51,9 +52,9 @@ export class LoginComponent implements OnInit {
           if (res.token) {
             let user: StoreUser = {
               email: this.loginForm.value.email,
-              token: res.token
-            }
-            localStorage.setItem('userLogin', JSON.stringify(user))
+              token: res.token,
+            };
+            localStorage.setItem('userLogin', JSON.stringify(user));
           }
         },
         (error) => {

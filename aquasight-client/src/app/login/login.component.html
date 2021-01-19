@@ -52,7 +52,7 @@
           </mat-form-field>
           <div fxLayout="row" fxLayoutAlign="space-between center">
             <div>
-              <button type="submit" mat-flat-button color="primary">
+              <button type="submit" [disabled]="pending" mat-flat-button color="primary">
                 Log In
               </button>
             </div>

@@ -1,3 +1,11 @@
-<div style="width:100%;">
-	<canvas id="myChart" width="700" height="250" #mychart></canvas>
+<div>
+  <div fxLayoutAlign="end center">
+    <button mat-icon-button color="warn" (click)="chartExpand()">
+      <mat-icon>fullscreen</mat-icon>
+    </button>
+  </div>
+
+  <div style="width: 100%">
+    <canvas id="myChart" width="700" height="250" #mychart></canvas>
+  </div>
 </div>

@@ -1,4 +1,3 @@
-import { Inject } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -7,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { finalize } from 'rxjs/operators';
 import { LoginService } from '../../login.service';
 import { PasswordValidation } from '../../password-validator';
@@ -18,11 +18,13 @@ import { PasswordValidation } from '../../password-validator';
 })
 export class RegistrationDialogComponent implements OnInit {
   registrationForm: FormGroup;
+  pending: boolean = false;
 
   constructor(
     public dialogRef: MatDialogRef<RegistrationDialogComponent>,
     private formBuilder: FormBuilder,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private _snackBar: MatSnackBar
   ) {
     this.registrationForm = this.formBuilder.group(
       {
@@ -43,17 +45,23 @@ export class RegistrationDialogComponent implements OnInit {
 
   onSubmitRegistration(ev): void {
     console.log(this.registrationForm.value);
+    this.pending = true;
     if (this.registrationForm.invalid)
       return this.registrationForm.markAllAsTouched();
     this.loginService
       .registerUser(this.registrationForm.value)
       .pipe(
         finalize(() => {
+          this.pending = false;
           this.onClose();
         })
       )
       .subscribe(
-        (res) => {},
+        (res) => {
+          this._snackBar.open('user registered successfully', 'close', {
+            duration: 2000,
+          });
+        },
         (error) => {
           console.log(error);
         }
